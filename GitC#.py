@@ -28,7 +28,8 @@ def createCsv(nodes):
         'Titulo da Issue;',
         'Data de Criacao da Issue;',
         'Data de Fechamento da Issue;',
-        'Data de Criacao do Repositorio;']
+        'Data de Criacao do Repositorio;',
+        'Numero de Estrelas;']
 
     csv_writer = csv.DictWriter(n_file, fieldnames=fnames, dialect="excel-tab")
     csv_writer.writeheader()
@@ -43,7 +44,8 @@ def createCsv(nodes):
                 'Titulo da Issue;': "{};".format("{}".format(issue['title']).replace('"',"'").replace(";","")),
                 'Data de Criacao da Issue;': "{};".format(issue['createdAt']),
                 'Data de Fechamento da Issue;': "{};".format(issue['closedAt']),
-                'Data de Criacao do Repositorio;': "{};".format(node['createdAt'])
+                'Data de Criacao do Repositorio;': "{};".format(node['createdAt']),
+                'Numero de Estrelas;': "{};".format(node['stargazers']['totalCount'])
             })
 
 for x in range(5):   
@@ -58,6 +60,10 @@ for x in range(5):
             primaryLanguage
             {
               name
+            }
+            stargazers
+            {
+              totalCount
             }
             issues(first:10)
             {
